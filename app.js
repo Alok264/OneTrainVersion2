@@ -165,6 +165,28 @@ passport.deserializeUser(function(id, done){
   }).catch((err)=> console.log(err));
 });
 
+app.use(function(err, req, res, next) {
+  if (err) {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+  }
+});
+
+app.use(function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    console.log('User not authenticated');
+    return res.redirect('/login');
+  }
+  next();
+});
+
+app.use(function(err, req, res, next) {
+  if (err && err.name === 'UnauthorizedError') {
+    console.log('Unauthorized access');
+    return res.redirect('/login');
+  }
+  next();
+});
 
 
 
