@@ -245,6 +245,7 @@ app.get("/", function(req, res){
   {
     logedIn = true;
   }
+  console.log(req.isAuthenticated() + "    Reached at Home")
   res.render("home");
 })
 
@@ -252,6 +253,7 @@ app.get("/", function(req, res){
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'], prompt: 'select_account'}));
 app.get('/auth/google/OneTrain', passport.authenticate('google', { failureRedirect: '/singup' }), function(req, res) {
     // Successful authentication, redirect home.
+    console.log("Reached at /auth/google/OneTrain");
     res.redirect('/');
   });
 
@@ -413,6 +415,7 @@ app.get('/logout', (req, res)=> {
 })
 
 app.get('/isLogedIn', (req, res)=> {
+  console.log("isLogedIn route is fetched" + "   " + logedIn);
   if(logedIn===true)
   {
     const userId = req.user.id;
@@ -563,6 +566,7 @@ app.post('/TBWS/:from/:to', (req, res)=>{
 app.post('/login', (req, res)=>{
   User.findOne({email: req.body.username}).then((user)=>{
     if(user){
+      console.log(user);
       userWarning = "";
       const existUser = new User({
         email: req.body.username,
@@ -576,6 +580,7 @@ app.post('/login', (req, res)=>{
             }
             else
             {
+                console.log("Reached at login authentication manually");
                 passport.authenticate("local")(req, res, function(){
                     res.redirect('/');
                 });
@@ -598,6 +603,7 @@ app.post('/signup', (req, res)=>{
       res.redirect('/signup');
     }
     else{
+      
       userWarning = "";
       User.register({ username: req.body.username, email: req.body.username, last_name: req.body.last_name, first_name: req.body.first_name }, req.body.password, function(err, user){
         if(err){
