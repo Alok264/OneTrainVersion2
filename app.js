@@ -384,6 +384,7 @@ app.get('/emergency', (req, res)=>{
 
 // Login input Page
 app.get('/login', (req, res)=>{
+console.log("Reached at login get");
   res.render('login', {userLoginWarning: userLoginWarning});
   userLoginWarning = "";
 })
@@ -564,6 +565,7 @@ app.post('/TBWS/:from/:to', (req, res)=>{
 })
 
 app.post('/login', (req, res)=>{
+console.log("Reached at login post");
   User.findOne({email: req.body.username}).then((user)=>{
     if(user){
       console.log(user);
@@ -596,7 +598,7 @@ app.post('/login', (req, res)=>{
 });
 
 app.post('/signup', (req, res)=>{
-
+console.log("Reached at signup post");
   User.findOne({email: req.body.username}).then((user)=>{
     if(user){
       userWarning = "This Email Address is already registered. Please Login or use another email address."
