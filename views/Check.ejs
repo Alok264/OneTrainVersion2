@@ -1,0 +1,126 @@
+<%- include('partials/header') -%>
+    <section id="ticket">
+        <div class="pnr-top">
+            <div class="row">
+                <div class="col from">
+                    <h3 class="h3"><b><%= FromstationName %></b></h3>
+                    <h5 class="h5"><b><%= From %></b></h5>
+                    <p class="p"><%= Doj %></p>
+                    <p class="p"><%= DepartureTime %></p>
+                </div>
+                <div class="col pnr">
+                    <h5  class="h5">PNR: <b><%= Pnr %></b></h5>
+                    <div >
+                        <img class="arrow" src="/images/arrow.png" alt="arrow image" srcset="">
+                    </div>
+                    <h6  class="h6">DOJ: <b><%= Doj %></b></h6>
+                    <p class="p">Duration: <%= Duration %> hrs</p>
+                </div>
+                <div class="col to">
+                    <h3 class="h3"><b><%= TostationName %></b></h3>
+                    <h5  class="h5"><b><%= To %></b></h5>
+                    <p class="p"><%= DestinationDoj %></p>
+                    <p class="p"><%= ArrivalTime %></p>
+                </div>
+            </div>
+            <hr  noshade size="5">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="card shadow-sm pnr-detail">
+                        <p class="p">Train Name: <b><%= TrainName %></b></p>
+                        <p class="p">Train Number: <b><%= TrainNo %></b></p>
+                        <p class="p">Booking Quota: <b><%= Quota %></b></p>
+                        <p class="p">Booking Date: <b><%= BookingDate %></b></p>
+                        <p class="p">From: <b><%= From %></b></p>
+                        <p class="p">From station Name: <b><%= FromstationName %></b></p>
+                        <p class="p">To: <b><%= To %></b></p>
+                        <p class="p">Reservation upto Name: <b><%= TostationName %></b></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm pnr-detail">
+                        <p class="p">Boarding station: <b><%= BoardingStationName %></b></p>
+                        <p class="p">DOJ: <b><%= Doj %></b></p>
+                        <% if(ChartPrepared === false){ %>
+                            <p class="p">Chart prepared: <b>No</b></p>
+                        <% } else { %>
+                            <p class="p">Chart prepared: <b>Yes</b></p>
+                        <% } %>
+                        <p class="p">Class: <b><%= Class %></b></p>
+                        <p class="p">Train Cancelled flag: <b><%= TrainCancelledFlag %></b></p>
+                        <p class="p">Passenger Count: <b><%= PassengerCount %></b></p>
+                        <p class="p">Departure Time: <b><%= DepartureTime %></b></p>
+                        <p class="p">Arrival Time: <b><%= ArrivalTime %></b></p>
+                    </div>
+                </div>
+            </div>
+            <hr noshade size="5">
+            <div class="row">
+                <h4  class="h4">Passenger Information</h4>
+                <div class="col">
+                    <table>
+                        <thead>
+                            <th>S.No</th>
+                            <th>Booking Status</th>
+                            <th>Current Status</th>
+                            <th>Coach</th>
+                            <th>Berth</th>
+                            <th>Birth Type</th>
+                        </thead>
+                        <tbody>
+                            <div class="card shadow-sm">
+                                <% for(let i = 0; i < passengers.length ; i++){ %>
+                                    <tr>
+                                        <td><%= passengers[i].Number %></td>
+                                        <td><%= passengers[i].BookingStatus %></td>
+                                        <td><%= passengers[i].CurrentStatus %></td>
+                                        <td><%= passengers[i].Coach %></td>
+                                        <td><%= passengers[i].Berth %></td>
+                                        <% if(passengers[i].BookingBerthCode == 'SL') { %>
+                                            <td>Side Lower</td>
+                                        <% } else if(passengers[i].BookingBerthCode == 'SU') { %>
+                                            <td>Side Upper</td>
+                                        <% }  else if(passengers[i].BookingBerthCode == 'L' || passengers[i].BookingBerthCode == 'LB') { %>
+                                            <td>Lower</td>
+                                        <% } else if(passengers[i].BookingBerthCode == 'M' || passengers[i].BookingBerthCode == 'MB') { %>
+                                            <td>Middle</td>
+                                        <% } else if(passengers[i].BookingBerthCode == 'U' || passengers[i].BookingBerthCode == 'UB') { %>
+                                            <td>Upper</td>
+                                        <% }  else { %>
+                                            <td>-------</td>
+                                        <% } %>
+                                    </tr>
+                                <% } %>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr noshade size="5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow-sm pnr-detail">
+                        <p class="p">Expected Platform Number: <b><%= ExpectedPlatformNo %></b></p>
+                        <p class="p">Booking Fare:  <b><%= BookingFare %></b></p>
+                        <p class="p">Ticket Fare: <b><%= TicketFare %></b></p>
+                        <p class="p">Rating: <b><%= Rating %></b></p>
+                        <p class="p">Coach Position: <b><%= CoachPosition %></b></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm pnr-detail">
+                        <p class="p">Food Rating: <b><%= FoodRating %></b></p>
+                        <p class="p">Puntuality Rating: <b><%= PunctualityRating %></b></p>
+                        <p class="p">Cleanliness Rating: <b><%= CleanlinessRating %></b></p>
+                        <p class="p">Pantry Availability: <b><%= HasPantry %></b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="print">
+                <button type="submit" class="btn btn-primary btn-md print">Print</button>
+            </div>
+        </div>
+    </section>
+<%- include('partials/footer') -%>
+
+

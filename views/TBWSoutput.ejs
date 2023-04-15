@@ -1,0 +1,48 @@
+<%- include('partials/header') -%>
+<section id="TBWS">
+        <form action="/TBWS" method="post" class="TBWSinput">
+            <div class="form-floating mb-3 TBWS-input ">
+                <input type="text" class="form-control source" id="floatingInput" placeholder="NDLS/New Delhi" autocomplete="off" name="Source" value="<%= source %>">
+                <label for="floatingInput">Source Station</label>
+            </div>
+            <div class="form-floating mb-3 TBWS-input ">
+                <input type="text" class="form-control destination" id="floatingInput" placeholder="NDLS/New Delhi" autocomplete="off" name="Destination" value="<%= destination %>">
+                <label for="floatingInput">Destination Station</label>
+            </div>
+            <div class="form-floating mb-3 TBWS-button">
+                <button type="submit" class="btn btn-success TBWS-search"><h4 class="h4">Search</h4></button>
+            </div>
+        </form>
+</section>
+
+<section id="TBWSoutput">
+    <br>
+    <p class="text-center">It shows trains from nearest Station also. So, check Carefully with station Code</p>
+    <br>
+    <div class="my-2 TBWS_Container">
+        <% docs.forEach(function(trains){ %>
+            <div class="bg-body-tertiary rounded-3">
+                <div class="TBWS_Tinfo">
+                    <p class="TBWS_SD"><b><em><%= trains.train_origin_station.toUpperCase() + ' (' + trains.train_origin_station_code + ')' %> - <%= trains.train_destination_station.toUpperCase() + ' (' + trains.train_destination_station_code + ')' %> (<%= trains.train_number %>)</em></b></p>
+                    <p class="train_name"> <%= trains.train_name %></p>
+                </div>
+                <div class="TBWS_Enq">
+                    <div class="from">
+                        <h5><%= source %></h5>
+                        <p><%= trains.depart_time %></p>
+                    </div>
+                    <div class="to">
+                        <h5><%= destination %></h5>
+                        <p><%= trains.arrival_time %></p>
+                    </div>
+                </div>
+                <div class="TBWS_Tinfo">
+                    <p class="Class"><b><em><%= trains.class_type %></em></b></p>
+                    <p class="Run_Day"><em><%= trains.run_days %></em></p>
+                    <p class="distance"><em><%= trains.distance %> KM</em></p>
+                </div>
+            </div> 
+        <% }) %>
+    </div>
+</section>
+<%- include('partials/footer') -%>

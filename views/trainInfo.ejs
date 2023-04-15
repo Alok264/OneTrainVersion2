@@ -1,0 +1,14 @@
+<%- include('partials/header') -%>
+
+    <section id="train-info">
+        <form action="/train-info" method="post" class="train-info-form-input">
+            <div class="form-floating mb-3 train-info-input ">
+                <input type="text" class="form-control train-number-name" id="floatingInput" placeholder="12331/Himgiri Express" autocomplete="off" name="nameumber">
+                <label for="floatingInput" classs="label">Train Number Or Train Name</label>
+            </div>
+            <div class="form-floating mb-3 train-info-button">
+                <button type="submit" class="btn btn-success train-info-search"><h4 class="h4">Search</h4></button>
+            </div>
+        </form>
+    </section>
+<%- include('partials/footer') -%>

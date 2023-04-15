@@ -1,0 +1,18 @@
+<%- include('partials/header') -%>
+
+    <section id="TBWS">
+        <form action="/TBWS" method="post" class="TBWSinput">
+            <div class="form-floating mb-3 TBWS-input ">
+                <input type="text" class="form-control source" id="floatingInput" placeholder="NDLS/New Delhi" autocomplete="off" name="Source">
+                <label for="floatingInput">Source Station</label>
+            </div>
+            <div class="form-floating mb-3 TBWS-input ">
+                <input type="text" class="form-control destination" id="floatingInput" placeholder="NDLS/New Delhi" autocomplete="off" name="Destination">
+                <label for="floatingInput">Destination Station</label>
+            </div>
+            <div class="form-floating mb-3 TBWS-button">
+                <button type="submit" class="btn btn-success TBWS-search"><h4 class="h4">Search</h4></button>
+            </div>
+        </form>
+    </section>
+<%- include('partials/footer') -%>

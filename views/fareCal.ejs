@@ -1,0 +1,21 @@
+<%- include('partials/header') -%>
+    <section id="fare">
+        <form action="/fare" method="post" class="fareinput">
+            <div class="form-floating mb-3 fare-input-number ">
+                <input type="text" class="form-control fare-number" id="floatingInput" placeholder="12331/Himgiri Express" autocomplete="off" name="TName">
+                <label for="floatingInput">Train Number/Name</label>
+            </div>
+            <div class="form-floating mb-3 fare-input-station ">
+                <input type="text" class="form-control fare-station" id="floatingInput" placeholder="NDLS/New Delhi" autocomplete="off" name="Source">
+                <label for="floatingInput">Source Station</label>
+            </div>
+            <div class="form-floating mb-3 fare-input-station ">
+                <input type="text" class="form-control fare-station" id="floatingInput" placeholder="NDLS/New Delhi" autocomplete="off" name="Destination">
+                <label for="floatingInput">Destination Station</label>
+            </div>
+            <div class="form-floating mb-3 fare-button">
+                <button type="submit" class="btn btn-success fare-check"><h4 class="h4">Check</h4></button>
+            </div>
+        </form>
+    </section>
+<%- include('partials/footer') -%>
