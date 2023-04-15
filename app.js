@@ -585,6 +585,7 @@ console.log("Reached at login post");
             {
                 console.log("Reached at login authentication manually");
                 passport.authenticate("local")(req, res, function(){
+                    logedIn = true;
                     res.redirect('/');
                 });
             }
@@ -617,6 +618,7 @@ console.log("Reached at signup post");
         {
           console.log("Reached to signup passport.authenticate");
           passport.authenticate("local")(req, res, function(){
+                    logedIn = true;
                     res.redirect('/');
         });
         console.log("leaving to signup passport.authenticate");
