@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "build": "npm install && npm run build:server",
-    "build:server": "babel app.js -d dist",
-    "server": "node dist/app.js",
+    "build:server": "babel app.js -d .",
+    "server": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alok kumar",
