@@ -2,10 +2,12 @@
   "name": "html-train",
   "version": "1.0.0",
   "description": "OneTrain",
-  "main": "app.js", 
-  "type": "module",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "build": "npm install && npm run build:server",
+    "build:server": "babel app.js -d dist",
+    "server": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alok kumar",
@@ -30,5 +32,9 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
